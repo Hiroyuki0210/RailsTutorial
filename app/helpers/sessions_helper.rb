@@ -25,6 +25,11 @@ module SessionsHelper
           @current_user = nil
      end
 
+     # 引数ユーザが現在のユーザか確認
+     def current_user?(user)
+          user == current_user
+     end
+
      # 現在ログイン中のユーザを返す
      def current_user
           if (user_id = session[:user_id])
