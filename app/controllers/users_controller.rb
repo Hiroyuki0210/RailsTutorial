@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: [:destory]
 
   def new
     @user = User.new
+  end
+
+  def index
+    @users = User.paginate(page: params[:page])
   end
 
   def show
@@ -36,7 +41,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
+
   private
+    # Strong Parameters
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
@@ -54,6 +66,11 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to (root_url) unless current_user?(@user)
+    end
+
+    # 管理者でなければルートページに戻す
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 
 end
