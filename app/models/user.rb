@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-     attr_accessor :remember_token, :activation_token
+     attr_accessor :remember_token, :activation_token, :reset_token
      before_save :downcase_email
      before_create :create_activation_digest
 
@@ -36,7 +36,7 @@ class User < ApplicationRecord
 
      # 渡されたトークンがダイジェストと一致したらtrueを返す
      def authenticated?(attribute, token)
-          digest = send.("#{attribute}_digest")
+          digest = send("#{attribute}_digest")
           return false if digest.nil?
           BCrypt::Password.new(digest).is_password?(token)
      end
@@ -55,6 +55,23 @@ class User < ApplicationRecord
      # 有効化用のメールを送信する
      def send_activation_email
           UserMailer.account_activation(self).deliver_now
+     end
+
+     # リセットパスワードのダイジェストを登録
+     def create_reset_digest
+          self.reset_token = User.new_token
+          update_attribute(:reset_digest, User.digest(reset_token))
+     end
+
+     # パスワード再設定用のメールを送信、メール送信時間の記録
+     def send_reset_password_email
+          UserMailer.password_reset(self).deliver_now
+          update_attribute(:reset_sent_at, Time.zone.now)
+     end
+
+     # パスワードリセットの有効期限が切れている場合はtrueを返す
+     def password_reset_expired?
+          reset_sent_at < 1.hours.ago
      end
 
      private
