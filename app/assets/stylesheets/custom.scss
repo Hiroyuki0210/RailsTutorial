@@ -85,7 +85,7 @@ footer {
                float: left;
                margin-left: 15px;
           }
-     }
+}
 
 /* sidebar */
 aside {
@@ -96,22 +96,22 @@ aside {
           padding: 10px 0;
           margin-top: 20px;
           &:first-child {
-          border: 0;
-          padding-top: 0;
+               border: 0;
+               padding-top: 0;
+          }
+          span {
+          display: block;
+          margin-bottom: 3px;
+          line-height: 1;
+          }
+          h1 {
+          font-size: 1.4em;
+          text-align: left;
+          letter-spacing: -1px;
+          margin-bottom: 3px;
+          margin-top: 0px;
+          }
      }
-     span {
-         display: block;
-         margin-bottom: 3px;
-         line-height: 1;
-     }
-     h1 {
-         font-size: 1.4em;
-         text-align: left;
-         letter-spacing: -1px;
-         margin-bottom: 3px;
-         margin-top: 0px;
-     }
-}
 }
    
 .gravatar {
@@ -128,27 +128,26 @@ input, textarea, select, .uneditable-input {
      border: 1px solid #bbb;
      width: 100%;
      margin-bottom: 15px;
-     
-   }
+}
    
-   input {
+input {
      height: auto !important;
-   }
+}
 
-   #error_explanation {
+#error_explanation {
      color: red;
      ul {
-       color: red;
-       margin: 0 0 30px 0;
+          color: red;
+          margin: 0 0 30px 0;
      }
-   }
+}
    
-   .field_with_errors {
+.field_with_errors {
      @extend .has-error;
      .form-control {
-       color: $state-danger-text;
+          color: $state-danger-text;
      }
-   }
+}
 
 $gray-medium-light: #eaeaea;
 
@@ -190,5 +189,50 @@ $gray-medium-light: #eaeaea;
        border-bottom: 1px solid $gray-lighter;
      }
 }
+}
 
+/* microposts */
+.microposts {
+     list-style: none;
+     padding: 0;
+     li {
+       padding: 10px 0;
+       border-top: 1px solid #e8e8e8;
+     }
+     .user {
+       margin-top: 5em;
+       padding-top: 0;
+     }
+     .content {
+       display: block;
+       margin-left: 60px;
+       img {
+         display: block;
+         padding: 5px 0;
+       }
+     }
+     .timestamp {
+       color: $gray-light;
+       display: block;
+       margin-left: 60px;
+     }
+     .gravatar {
+       float: left;
+       margin-right: 10px;
+       margin-top: 5px;
+     }
+}
+   
+aside {
+     textarea {
+          height: 100px;
+          margin-bottom: 5px;
+     }
+}
+   
+span.picture {
+     margin-top: 10px;
+     input {
+          border: 0;
+     }
 }
