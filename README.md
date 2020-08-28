@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## クローン
+`$ git clone git@github.com:Hiroyuki0210/RailsTutorial.git`
 
-Things you may want to cover:
+## gemのインストール
+`$ bundle install`
 
-* Ruby version
+## マイグレーション
+`$ rails db:migrate`
 
-* System dependencies
+## 初期データ投入
+`$ rails db:seed`
 
-* Configuration
+## 実行
+`$ rails server`
 
-* Database creation
+http://localhost:3000/ にアクセス。
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## ログイン情報
+### 管理者
+* メールアドレス: example@railstutorial.org
+* パスワード: foobar
+### 一般ユーザ
+* メールアドレス: example-1@railstutorial.org
+* パスワード: password
